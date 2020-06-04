@@ -9,7 +9,7 @@ const ProtectedSP = ({component: Cmp,...rest}) => (
             <Cmp {...props} />
         ):
         <Redirect
-        to="/register"
+        to="/"
         />
     }
     />

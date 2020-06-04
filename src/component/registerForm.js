@@ -10,7 +10,8 @@ import MenuItem from "@material-ui/core/MenuItem";
 import Button from "@material-ui/core/Button";
 import axios from "axios";
 import { useHistory, withRouter } from "react-router-dom";
-//import { Redirect } from 'react-router'
+import Typography from '@material-ui/core/Typography';
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles(theme => ({
   card: {
@@ -309,6 +310,9 @@ const RegisterForm = props => {
             </Button>
           </CardActions>
         </Card>
+        <Typography variant="body2" color='primary' component="p">
+                Already Registered! <Link variant="body2" color="inherit" to="/login">Login </Link>
+        </Typography>
       </form>
     </div>
     </div>

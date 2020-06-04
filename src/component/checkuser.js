@@ -37,7 +37,7 @@ const CheckUserForm = props => {
            .then(response => {
                console.log(response.data);
                if(response.data.success && response.data.success === true){
-                props.history.push('/register');
+                props.history.push('/');
                }
                else{
                  props.history.push({

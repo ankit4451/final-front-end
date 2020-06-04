@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Redirect, withRouter } from 'react-router-dom';
 import Button from "@material-ui/core/Button";
+import axios from 'axios';
 
 class Home extends Component {
     
@@ -12,6 +13,23 @@ class Home extends Component {
     }
 
     logout = () => {
+        let currentUser = JSON.parse(localStorage.getItem("user"));
+         const headers = {
+             'Authorization': currentUser.token? `Bearer${currentUser.token}`:''
+         }
+        axios({
+            method: 'post',
+            url:'http://localhost:3000/users/logout',
+            data:{},
+            headers:headers
+        })
+        .then(response => {
+            console.log(response);
+        })
+        .catch(error => {
+            console.log(error);
+        })
+         
         localStorage.removeItem('user');
         this.setState({
             navigate : true
@@ -28,8 +46,7 @@ class Home extends Component {
 
         return (
             <div>
-                <p>Home Works!!</p>
-                <p>Basic Logout Button is implemented..as dashboard will contain logout too!!</p> 
+                <p>Home Works!!</p> 
                 <Button color="primary" onClick={this.logout}>LOGOUT</Button>
             </div>
         )

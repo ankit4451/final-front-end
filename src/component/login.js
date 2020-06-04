@@ -9,6 +9,7 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import { useHistory,withRouter } from "react-router-dom";
 import axios from "axios";
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles(theme => ({
     card: {
@@ -111,6 +112,9 @@ const LoginForm = props => {
           <CardActions className={classes.actions}>
             <Button type="submit" color="primary" disabled={isSubmitting}>
               SUBMIT
+            </Button>
+            <Button variant="contained" component={Link} to="/" color="primary" href="#contained-buttons">
+              NEW MEMBER?
             </Button>
           </CardActions>
         </Card>

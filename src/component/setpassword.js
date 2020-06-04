@@ -9,7 +9,6 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import { withRouter,useHistory,useLocation } from "react-router-dom";
 import axios from "axios";
-import { Redirect } from "react-router-dom";
 
 const useStyles = makeStyles(theme => ({
   card: {
