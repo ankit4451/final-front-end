@@ -7,7 +7,7 @@ import CardContent from "@material-ui/core/CardContent";
 import CardActions from "@material-ui/core/CardActions";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
-import { withRouter,useHistory,useLocation } from "react-router-dom";
+import { withRouter} from "react-router-dom";
 import axios from "axios";
 
 const useStyles = makeStyles(theme => ({
@@ -26,8 +26,6 @@ const useStyles = makeStyles(theme => ({
 
 const SetPasswordForm = props => {
   const classes = useStyles();
-  const history = useHistory();
-  const location = useLocation();
   
   const handleSubmit = (values,{setSubmitting}) => {
     //Submit to Server
