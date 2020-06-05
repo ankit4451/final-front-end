@@ -87,8 +87,7 @@ const SetPasswordForm = props => {
          isSubmitting,
          handleChange,
          handleBlur,
-         handleSubmit,
-         handleReset
+         handleSubmit
         } = props;
         return(
   <div>
