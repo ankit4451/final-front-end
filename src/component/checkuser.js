@@ -9,7 +9,7 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import Typography from '@material-ui/core/Typography';
 import axios from "axios";
-import { withRouter, useHistory } from "react-router-dom";
+import { withRouter} from "react-router-dom";
 import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles(theme => ({
@@ -28,7 +28,6 @@ const useStyles = makeStyles(theme => ({
 
 const CheckUserForm = props => {
   const classes = useStyles();
-  const history = useHistory();
 
   const handleSubmit = (values, {setSubmitting}) => {
     //Submit to server
@@ -74,8 +73,7 @@ const CheckUserForm = props => {
          isSubmitting,
          handleChange,
          handleBlur,
-         handleSubmit,
-         handleReset
+         handleSubmit
         } = props;
         return(
   <div>
