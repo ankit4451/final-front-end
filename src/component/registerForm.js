@@ -9,7 +9,7 @@ import TextField from "@material-ui/core/TextField";
 import MenuItem from "@material-ui/core/MenuItem";
 import Button from "@material-ui/core/Button";
 import axios from "axios";
-import { useHistory, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import Typography from '@material-ui/core/Typography';
 import { Link } from 'react-router-dom';
 
@@ -70,7 +70,6 @@ const MaritalCategory = [
 
 const RegisterForm = props => {
   const classes = useStyles();
-  const history = useHistory();
   
   const handleSubmit = (values, { setSubmitting }) => {
     // submit to the server
