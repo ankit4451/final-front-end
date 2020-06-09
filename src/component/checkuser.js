@@ -9,7 +9,7 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import Typography from '@material-ui/core/Typography';
 import axios from "axios";
-import { withRouter, useHistory } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles(theme => ({
@@ -21,6 +21,15 @@ const useStyles = makeStyles(theme => ({
     display: "Flex",
     justifyContent: "center"
   },
+  cardHeader: {
+    background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+    border: 0,
+    borderRadius: 3,
+    boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+    color: 'white',
+    height: 48,
+    padding: '0 30px',
+  },
   actions: {
     float: "right"
   }
@@ -28,12 +37,11 @@ const useStyles = makeStyles(theme => ({
 
 const CheckUserForm = props => {
   const classes = useStyles();
-  const history = useHistory();
 
   const handleSubmit = (values, {setSubmitting}) => {
     //Submit to server
     console.log(values);
-    axios.post('http://localhost:3000/uidcheck',values)
+    axios.post('https://ddp-tec.herokuapp.com/uidcheck',values)
            .then(response => {
                console.log(response.data);
                if(response.data.success && response.data.success === true){
@@ -74,15 +82,14 @@ const CheckUserForm = props => {
          isSubmitting,
          handleChange,
          handleBlur,
-         handleSubmit,
-         handleReset
+         handleSubmit
         } = props;
         return(
   <div>
     <div className={classes.container}>
       <form onSubmit={handleSubmit}>
-        <Card className={classes.card}>
-          <CardHeader title= "Check User"></CardHeader>
+        <Card className={classes.card} style={{ backgroundColor: "#f3e5f5" }}>
+          <CardHeader className={classes.cardHeader} title= "Check User"></CardHeader>
           <CardContent>
             <TextField
               id="aadhaar"
@@ -103,8 +110,9 @@ const CheckUserForm = props => {
             </Button>
           </CardActions> 
         </Card>
-        <Typography variant="body2" color='primary' component="p">
-                Already Registered! <Link variant="body2" color="inherit" to="/login">Login </Link>
+        <br></br>
+        <Typography variant="subtitle1" color='secondary' align = 'center' component="p">
+                Already Registered  <Link variant="body2" color="inherit" to="/login"> Login </Link>
         </Typography>
       </form>
     </div>

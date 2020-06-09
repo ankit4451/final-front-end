@@ -7,7 +7,7 @@ import CardContent from "@material-ui/core/CardContent";
 import CardActions from "@material-ui/core/CardActions";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
-import { useHistory,withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import axios from "axios";
 import { Link } from 'react-router-dom';
 
@@ -20,6 +20,15 @@ const useStyles = makeStyles(theme => ({
       display: "Flex",
       justifyContent: "center"
     },
+    cardHeader: {
+      background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+      border: 0,
+      borderRadius: 3,
+      boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+      color: 'white',
+      height: 48,
+      padding: '0 30px',
+    },
     actions: {
       float: "right"
     }
@@ -27,12 +36,11 @@ const useStyles = makeStyles(theme => ({
 
 const LoginForm = props => {
     const classes = useStyles();
-    const history = useHistory();
 
     const handleSubmit = (values,{setSubmitting}) => {
         //Submit to Server
         console.log(values);
-        axios.post('http://localhost:3000/users/login',values)
+        axios.post('https://ddp-tec.herokuapp.com/users/login',values)
              .then(response => {
                console.log(response);
                if(response.data){
@@ -73,15 +81,14 @@ const LoginForm = props => {
              isSubmitting,
              handleChange,
              handleBlur,
-             handleSubmit,
-             handleReset
+             handleSubmit
             } = props;
             return(
   <div>
     <div className={classes.container}>
       <form onSubmit={handleSubmit}>
-        <Card className={classes.card}>
-          <CardHeader title= "Login"></CardHeader>
+        <Card className={classes.card} style={{ backgroundColor: "#f3e5f5" }}>
+          <CardHeader className={classes.cardHeader} title= "Login"></CardHeader>
           <CardContent>
             <TextField
               id="aadhaar"

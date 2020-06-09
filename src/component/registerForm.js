@@ -9,7 +9,7 @@ import TextField from "@material-ui/core/TextField";
 import MenuItem from "@material-ui/core/MenuItem";
 import Button from "@material-ui/core/Button";
 import axios from "axios";
-import { useHistory, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import Typography from '@material-ui/core/Typography';
 import { Link } from 'react-router-dom';
 
@@ -21,6 +21,15 @@ const useStyles = makeStyles(theme => ({
   container: {
     display: "Flex",
     justifyContent: "center"
+  },
+  cardHeader: {
+    background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+    border: 0,
+    borderRadius: 3,
+    boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+    color: 'white',
+    height: 48,
+    padding: '0 30px',
   },
   actions: {
     float: "right"
@@ -70,12 +79,11 @@ const MaritalCategory = [
 
 const RegisterForm = props => {
   const classes = useStyles();
-  const history = useHistory();
   
   const handleSubmit = (values, { setSubmitting }) => {
     // submit to the server
     console.log(values);
-    axios.post('http://localhost:3000/register',values)
+    axios.post('https://ddp-tec.herokuapp.com/register',values)
          .then(response => {
               console.log(response);
               if(response.data){
@@ -157,8 +165,8 @@ const RegisterForm = props => {
           <div>
     <div className={classes.container}>
       <form onSubmit={handleSubmit}>
-        <Card className={classes.card}>
-          <CardHeader title= "Register"></CardHeader>
+        <Card className={classes.card} style={{ backgroundColor: "#f3e5f5" }}>
+          <CardHeader className={classes.cardHeader} title= "Register"></CardHeader>
           <CardContent>
             <TextField
               id="aadhaar"
@@ -310,8 +318,9 @@ const RegisterForm = props => {
             </Button>
           </CardActions>
         </Card>
-        <Typography variant="body2" color='primary' component="p">
-                Already Registered! <Link variant="body2" color="inherit" to="/login">Login </Link>
+        <br></br>
+        <Typography variant="subtitle1" align = 'center' color='secondary' component="p">
+                Already Registered <Link variant='h1' color='initial' underline='none' to="/login"> Login </Link>
         </Typography>
       </form>
     </div>

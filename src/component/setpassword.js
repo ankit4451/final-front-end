@@ -7,13 +7,22 @@ import CardContent from "@material-ui/core/CardContent";
 import CardActions from "@material-ui/core/CardActions";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
-import { withRouter,useHistory,useLocation } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import axios from "axios";
 
 const useStyles = makeStyles(theme => ({
   card: {
     maxWidth: 420,
     marginTop: 50
+  },
+  cardHeader: {
+    background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+    border: 0,
+    borderRadius: 3,
+    boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+    color: 'white',
+    height: 48,
+    padding: '0 30px',
   },
   container: {
     display: "Flex",
@@ -26,8 +35,6 @@ const useStyles = makeStyles(theme => ({
 
 const SetPasswordForm = props => {
   const classes = useStyles();
-  const history = useHistory();
-  const location = useLocation();
   
   const handleSubmit = (values,{setSubmitting}) => {
     //Submit to Server
@@ -46,7 +53,7 @@ const SetPasswordForm = props => {
     
     axios({
       method: 'post',
-      url:'http://localhost:3000/setPassword/'+props.location.aadhaarNumber,
+      url:'https://ddp-tec.herokuapp.com/setPassword/'+props.location.aadhaarNumber,
       data: JSON.stringify(body),
       headers: headers
     })
@@ -89,15 +96,14 @@ const SetPasswordForm = props => {
          isSubmitting,
          handleChange,
          handleBlur,
-         handleSubmit,
-         handleReset
+         handleSubmit
         } = props;
         return(
   <div>
     <div className={classes.container}>
       <form onSubmit={handleSubmit}>
-        <Card className={classes.card}>
-          <CardHeader title= "Set Password"></CardHeader>
+        <Card className={classes.card} style={{ backgroundColor: "#f3e5f5" }}>
+          <CardHeader className={classes.cardHeader} title= "Set Password"></CardHeader>
           <CardContent>
             <TextField
               id="password"

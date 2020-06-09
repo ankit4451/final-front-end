@@ -16,6 +16,7 @@ import Protected from './component/protectedh';
 import Home from './component/home';
 import ProtectedSP from './component/protectedsp';
 import {Redirect} from 'react-router-dom';
+import './App.css';
 
 class App extends Component {
 
