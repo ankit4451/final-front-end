@@ -16,6 +16,7 @@ import Protected from './component/protectedh';
 import Home from './component/home';
 import ProtectedSP from './component/protectedsp';
 import {Redirect} from 'react-router-dom';
+import Nav from './component/navbar';
 import './App.css';
 
 class App extends Component {
@@ -24,12 +25,13 @@ class App extends Component {
     return (
         <Router>
           <div>
+            <Nav />
             <Switch>
             <Route exact path="/">
                 <RegisterForm />
               </Route>
               <Route path="/checkuser">
-                <CheckUserForm />
+                <CheckUserForm/>
               </Route>
               <ProtectedSP exact path="/setpassword" component={SetPasswordForm}>
               </ProtectedSP>
