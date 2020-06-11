@@ -40,7 +40,7 @@ const LoginForm = props => {
     const handleSubmit = (values,{setSubmitting}) => {
         //Submit to Server
         console.log(values);
-        axios.post('https://ddp-tec.herokuapp.com/users/login',values)
+        axios.post('http://localhost:3000/users/login',values)
              .then(response => {
                console.log(response);
                if(response.data){

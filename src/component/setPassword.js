@@ -38,8 +38,6 @@ const SetPasswordForm = props => {
   
   const handleSubmit = (values,{setSubmitting}) => {
     //Submit to Server
-    //console.log(values);
-    //console.log(props.location.aadhaarNumber);
     
     var body = {
       password: values.password
@@ -53,7 +51,7 @@ const SetPasswordForm = props => {
     
     axios({
       method: 'post',
-      url:'https://ddp-tec.herokuapp.com/setPassword/'+props.location.aadhaarNumber,
+      url:'http://localhost:3000/setPassword/'+props.location.aadhaarNumber,
       data: JSON.stringify(body),
       headers: headers
     })

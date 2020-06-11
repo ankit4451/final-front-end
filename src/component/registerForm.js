@@ -9,7 +9,7 @@ import TextField from "@material-ui/core/TextField";
 import MenuItem from "@material-ui/core/MenuItem";
 import Button from "@material-ui/core/Button";
 import axios from "axios";
-import { withRouter } from "react-router-dom";
+import { withRouter, Redirect } from "react-router-dom";
 import Typography from '@material-ui/core/Typography';
 import { Link } from 'react-router-dom';
 
@@ -79,18 +79,25 @@ const MaritalCategory = [
 
 const RegisterForm = props => {
   const classes = useStyles();
-  
+
+  const anum = props.location.aadhaarNumber;
+  //console.log(anum);
+
+  if(anum === undefined){
+    return <Redirect to='/' />
+  }
+
   const handleSubmit = (values, { setSubmitting }) => {
     // submit to the server
     console.log(values);
-    axios.post('https://ddp-tec.herokuapp.com/register',values)
+    axios.post('http://localhost:3000/register',values)
          .then(response => {
               console.log(response);
               if(response.data){
                 localStorage.setItem("user",JSON.stringify(response.data));
                 props.history.push({
                   pathname:'/setpassword',
-                  aadhaarNumber: values.aadhaar
+                  aadhaarNumber: props.location.aadhaarNumber
                });
               }
           })
@@ -104,7 +111,7 @@ const RegisterForm = props => {
     <Formik
       initialValues = {
         {
-          aadhaar:"",
+          aadhaar:anum,
           name:"",
           birth:"",
           occupation:"",
@@ -172,13 +179,14 @@ const RegisterForm = props => {
               id="aadhaar"
               label="Aadhaar Number"
               value={values.aadhaar}
-              onChange={handleChange}
+              // onChange={handleChange}
               onBlur={handleBlur}
               helperText={touched.aadhaar ? errors.aadhaar : ""}
               error={touched.aadhaar && Boolean(errors.aadhaar)}
               margin="dense"
               variant="outlined"
               fullWidth
+              diasbled = "true"
             />
             <TextField
               id="name"

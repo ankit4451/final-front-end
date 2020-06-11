@@ -11,6 +11,7 @@ import Typography from '@material-ui/core/Typography';
 import axios from "axios";
 import { withRouter} from "react-router-dom";
 import { Link } from 'react-router-dom';
+import Alert from '@material-ui/lab/Alert';
 
 const useStyles = makeStyles(theme => ({
   card: {
@@ -38,20 +39,33 @@ const useStyles = makeStyles(theme => ({
 const CheckUserForm = props => {
   const classes = useStyles();
 
-  const handleSubmit = (values, {setSubmitting}) => {
+  const handleSubmit = (values, {setSubmitting ,setStatus}) => {
     //Submit to server
     console.log(values);
-    axios.post('https://ddp-tec.herokuapp.com/uidcheck',values)
+    axios.post('http://localhost:3000/uidcheck',values)
            .then(response => {
                console.log(response.data);
+               setStatus(response.status);
                if(response.data.success && response.data.success === true){
-                props.history.push('/');
+                setStatus({
+                  sent: true,
+                  msg: "U are not registered !"
+                })
+                setTimeout(() => props.history.push({
+                  pathname:'/register',
+                  aadhaarNumber: values.aadhaar
+               }) , 3000);
+                
                }
                else{
-                 props.history.push({
+                setStatus({
+                  sent: true,
+                  msg: "U are already registered !"
+                })
+                setTimeout(() => props.history.push({
                   pathname:'/setpassword',
                   aadhaarNumber: values.aadhaar
-               });
+               }) , 3000);
                }
            })
            .catch(error => {
@@ -82,10 +96,15 @@ const CheckUserForm = props => {
          isSubmitting,
          handleChange,
          handleBlur,
-         handleSubmit
+         handleSubmit,
+         status
         } = props;
         return(
   <div>
+  {status && status.msg && (
+      <Alert   
+      className='alerts' severity="info" variant="filled"> {status.msg} </Alert>
+      )}
     <div className={classes.container}>
       <form onSubmit={handleSubmit}>
         <Card className={classes.card} style={{ backgroundColor: "#f3e5f5" }}>

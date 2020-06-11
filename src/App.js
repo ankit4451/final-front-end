@@ -2,7 +2,7 @@
 /checkuser --> for aadhar number checking
 /register --> for register form
 /login --> for login form
-/setpassword --> setpassword page
+/setpassword --> setpassword page --> will work after api is corrected
 /home --> user dashboard
 */
 
@@ -27,14 +27,17 @@ class App extends Component {
           <div>
             <Nav />
             <Switch>
-            <Route exact path="/">
-                <RegisterForm />
-              </Route>
-              <Route path="/checkuser">
+              <Route exact path="/">
                 <CheckUserForm/>
               </Route>
-              <ProtectedSP exact path="/setpassword" component={SetPasswordForm}>
-              </ProtectedSP>
+              <Route exact path="/register">
+                <RegisterForm />
+              </Route>
+              {/* <ProtectedSP exact path="/setpassword" component={SetPasswordForm}>
+              </ProtectedSP>  */}
+              <Route path="/setpassword">
+                <SetPasswordForm/>
+              </Route>
               <Route path="/login">
                 <LoginForm />
               </Route>
